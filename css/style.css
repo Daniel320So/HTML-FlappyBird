@@ -1,0 +1,76 @@
+/* Set variables */
+:root {
+    --bird-jump-start: 0;
+    --bird-jump-end: 0;
+}
+
+/* General */
+*{
+    padding: 0;
+    margin: 0;
+}
+
+section {
+    display: hidden;
+}
+
+#game-screen {
+    position: relative;
+    width: 80%;
+    height: 600px;
+    border: 1px solid red;
+    overflow: hidden;
+}
+
+#block {
+    position: absolute;
+    height: 100%;
+    width: 5%;
+    background-color: black;
+    right: 0;
+    animation: move-block 2s infinite linear;
+}
+
+#hole {
+    position: absolute;
+    height: 100px;
+    width: 5%;
+    background-color: blue;
+    right: 0;
+    top: 30%;
+    animation: move-block 2s infinite linear;
+}
+
+@keyframes move-block {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+#bird {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    margin-left: 150px;
+}
+
+.jumping {
+    animation: jump 0.25s linear;
+}
+
+@keyframes jump {
+    0% {
+        top: var(--bird-jump-start);
+    }
+    100% {
+        top: var(--bird-jump-end);
+        transform: rotate(-45deg);
+    }
+}
+
+
