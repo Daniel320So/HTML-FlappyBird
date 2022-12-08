@@ -2,6 +2,8 @@
 :root {
     --bird-jump-start: 0;
     --bird-jump-end: 0;
+    --bird-game-over: 0;
+    --bird-game-over-top: 0;
 }
 
 /* General */
@@ -11,7 +13,7 @@
 }
 
 section {
-    display: hidden;
+    display: none;
 }
 
 #game-screen {
@@ -25,19 +27,21 @@ section {
 #block {
     position: absolute;
     height: 100%;
-    width: 5%;
+    width: 10%;
     background-color: black;
     right: 0;
-    animation: move-block 2s infinite linear;
 }
 
 #hole {
     position: absolute;
-    height: 100px;
-    width: 5%;
+    height: 200px;
+    width: 10%;
     background-color: blue;
     right: 0;
     top: 30%;
+}
+
+.animateObstacle {
     animation: move-block 2s infinite linear;
 }
 
@@ -63,6 +67,10 @@ section {
     animation: jump 0.25s linear;
 }
 
+.game-over {
+    animation: gameOver 1s linear;
+}
+
 @keyframes jump {
     0% {
         top: var(--bird-jump-start);
@@ -70,6 +78,17 @@ section {
     100% {
         top: var(--bird-jump-end);
         transform: rotate(-45deg);
+    }
+}
+
+@keyframes gameOver {
+    20% {
+        top: var( --bird-game-over);
+    }
+    100% {
+        top: 700px;
+        transform: rotate(3600deg);
+        scale: 2;
     }
 }
 
