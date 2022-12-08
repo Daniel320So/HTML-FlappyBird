@@ -60,17 +60,14 @@ h1 {
     font-size: 3.5em;
 }
 
-#button-bar {
-    display: flex;
-    flex-flow: row nowrap;
-    width: 100%;
-    gap: 50px;
+h2 {
+    display: none;
 }
 
 button {
     font-size: 1em;
     background-color: aliceblue;
-    width: 100%;
+    width: 50%;
     height: 50px;
     border-radius: 10px;
     border-color: aliceblue;
@@ -155,10 +152,12 @@ button {
 @keyframes jump {
     0% {
         top: var(--bird-jump-start);
+        left: 0;
     }
     100% {
         top: var(--bird-jump-end);
-        transform: rotate(-45deg);
+        left: 0;
+        /* transform: rotate(-45deg); */
     }
 }
 

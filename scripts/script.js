@@ -3,7 +3,11 @@ let gaming = 0;
 let gameInerval;
 
 const start = () => {
+    //Start
     gaming = 1;
+    $("html").on("click", function(){
+        jump();
+    });
     $("#start-screen").hide();
     $("#game-bird").show();
     $("#block").addClass("animateObstacle");
@@ -16,6 +20,10 @@ const start = () => {
 const gameOver = (birdPosition) => {
     //Game Over 
     gaming = 0;
+    $("html").on("click", function(){
+        return;
+    });
+
     clearInterval(gameInterval);
 
     //Stop all animations
@@ -27,8 +35,14 @@ const gameOver = (birdPosition) => {
     $("#game-bird").addClass("game-over");
     gameOverTimeout = setTimeout(function() {
         $("#game-bird").hide();
-        $("#endScreen").show();
+        $("#start-screen").show();
+        $("h2").show();
+        $("#game-bird").css("top", "200px");
+        $("#block").removeClass("animateObstacle");
+        $("#hole").removeClass("animateObstacle");
+        $("#game-bird").removeClass("game-over");
     }, 900);
+
 };
 
 const jump = () => {
@@ -49,10 +63,12 @@ const jump = () => {
 }
 
 const setGameInterval = () => {
+
     // bird falling
     $("#game-bird").css("top", $("#game-bird").position().top + 3 + "px");
 
     // Game Logic
+
     let _birdposition = $("#game-bird").position();
     console.log(_birdposition)
     let birdPosition = {
@@ -93,10 +109,6 @@ const loadPage = () => {
         let randomTop = random*(600-200) + 25 + "px"; //Height of the screen 650px - height of block 100px
         $(this).css("top", randomTop);
     })
-
-    $("html").on("click", function(){
-        jump();
-    });
 
     $("#start-button").on("click", function(){
         start();
