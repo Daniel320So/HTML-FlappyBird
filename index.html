@@ -2,18 +2,30 @@
 <html land="en">
     <head>
         <meta charset ="UTF-8">
-        <title>Flappy Bird</title>
+        <title>Flappy Bird+</title>
         <link rel="stylesheet" href="./css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="./scripts/script.js"></script>
     </head>
     <body>
         <main id="game-screen">
-            <section id="startScreen"></section>
-            <div id="block" class="animateObstacle"></div>
-            <div id="hole" class="animateObstacle"></div>
-            <img id="bird" src="./images/bird.png" alt="Image of a pink flappy bird"></img>
-            <section id="endScreen"> Game Over</section>
+            <!-- <section id="start-screen">
+                <p1> Flappy Bird+</p1>
+                <div id="button-bar">
+                    <button>Start</button>
+                    <button>Ranking</button>
+                </div>
+            </section> -->
+            <section id="game-play">
+                <div id="upper-bound"></div>
+                <div id="playground">
+                    <div id="block" class="animateObstacle"></div>
+                    <div id="hole" class="animateObstacle"></div>
+                    <img id="bird" src="./images/bird.png" alt="Image of a pink flappy bird"></img>
+                </div>
+                <div id="lower-bound"></div>
+            </section>
+            <!-- <section id="end-screen">Game Over</section> -->
         </main>
 
     </body>
