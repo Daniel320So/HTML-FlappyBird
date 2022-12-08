@@ -9,19 +9,24 @@
     </head>
     <body>
         <main id="game-screen">
-            <!-- <section id="start-screen">
-                <p1> Flappy Bird+</p1>
-                <div id="button-bar">
-                    <button>Start</button>
-                    <button>Ranking</button>
+            <section id="start-screen">
+                <div class="center">
+                    <div id="start-container">
+                        <h1> Flappy Bird+</h1>
+                        <img class="bird" id="start-bird" src="./images/bird.png" alt="Image of a pink flappy bird"></img>
+                        <div id="button-bar">
+                            <button id="start-button">Start</button>
+                            <button id="rank-button">Ranking</button>
+                        </div>
+                    </div>
                 </div>
-            </section> -->
+            </section>
             <section id="game-play">
                 <div id="upper-bound"></div>
                 <div id="playground">
-                    <div id="block" class="animateObstacle"></div>
-                    <div id="hole" class="animateObstacle"></div>
-                    <img id="bird" src="./images/bird.png" alt="Image of a pink flappy bird"></img>
+                    <div id="block"></div>
+                    <div id="hole"></div>
+                    <img class="bird" id="game-bird" src="./images/bird.png" alt="Image of a pink flappy bird"></img>
                 </div>
                 <div id="lower-bound"></div>
             </section>
