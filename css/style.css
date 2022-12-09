@@ -3,6 +3,7 @@
     --bird-jump-start: 0;
     --bird-jump-end: 0;
     --bird-game-over: 0;
+    --speed: 3s;
 }
 
 /* General */
@@ -60,10 +61,6 @@ h1 {
     font-size: 3.5em;
 }
 
-h2 {
-    display: none;
-}
-
 button {
     font-size: 1em;
     background-color: aliceblue;
@@ -111,7 +108,7 @@ button {
 
 #hole {
     position: absolute;
-    height: 200px;
+    height: 250px;
     width: 10%;
     background-color: aqua;
     right: 0;
@@ -119,8 +116,23 @@ button {
 }
 
 .animateObstacle {
-    animation: move-block 2s infinite linear;
+    animation: move-block var(--speed) infinite linear;
 }
+
+#score-container {
+    display:none;
+    flex-flow: row nowrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#score-container > * {
+    margin-top: 20px;
+    z-index: 1;
+}
+
 
 @keyframes move-block {
     0% {
@@ -157,7 +169,7 @@ button {
     100% {
         top: var(--bird-jump-end);
         left: 0;
-        /* transform: rotate(-45deg); */
+        transform: rotate(-45deg);
     }
 }
 
@@ -169,6 +181,17 @@ button {
         top: 700px;
         transform: rotate(3600deg);
         scale: 3;
+    }
+}
+
+.increase-score {
+    animation: increase-score 0.2s linear;
+}
+
+@keyframes increase-score {
+    100% {
+        scale: 1.25;
+        margin-top: 15px;
     }
 }
 

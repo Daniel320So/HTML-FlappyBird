@@ -2,7 +2,7 @@
 <html land="en">
     <head>
         <meta charset ="UTF-8">
-        <title>Flappy Bird+</title>
+        <title>Flappy Bird</title>
         <link rel="stylesheet" href="./css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="./scripts/script.js"></script>
@@ -12,8 +12,8 @@
             <section id="start-screen">
                 <div class="center">
                     <div id="start-container">
-                        <h1> Flappy Bird+</h1>
-                        <h2 id="score"> Your Score: </h2>
+                        <h1>Flappy Bird</h1>
+                        <h2 id="final-score"> Your Score: 0</h2>
                         <img class="bird" id="start-bird" src="./images/bird.png" alt="Image of a pink flappy bird"></img>
                         <button id="start-button">Start</button>
                     </div>
@@ -24,6 +24,10 @@
                 <div id="playground">
                     <div id="block"></div>
                     <div id="hole"></div>
+                    <div id="score-container">
+                        <h2>Score: </h2>
+                        <h2 id="current-score"></h2>
+                    </div>
                     <img class="bird" id="game-bird" src="./images/bird.png" alt="Image of a pink flappy bird"></img>
                 </div>
                 <div id="lower-bound"></div>

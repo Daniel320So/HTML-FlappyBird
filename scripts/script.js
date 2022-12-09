@@ -1,30 +1,40 @@
-let jumping = 0;
-let gaming = 0;
-let gameInerval;
+let score = 0;
+let jumpingCount = 0;
+let jumping = false;
+let gaming = false;
+let gameInterval;
+let scoreInterval;
+let difficultyInterval;
 
 const start = () => {
     //Start
-    gaming = 1;
+    gaming = true;
+    score = 0;
     $("html").on("click", function(){
-        jump();
+        if (gaming) jump();
     });
+    $("html").on("click");
     $("#start-screen").hide();
+    $("#current-score").text(`${score}`);
+    $("#score-container").css("display", "flex");
     $("#game-bird").show();
     $("#block").addClass("animateObstacle");
     $("#hole").addClass("animateObstacle");
     $("#block").css("animationPlayState", "running");
     $("#hole").css("animationPlayState", "running");
+    started = true;
     gameInterval = setInterval(setGameInterval, 10);
+    scoreInterval = setInterval(setScoreInterval, 1000);
 };
 
 const gameOver = (birdPosition) => {
     //Game Over 
-    gaming = 0;
-    $("html").on("click", function(){
-        return;
-    });
-
+    gaming = false;
+    jumpingCount = 0;
+    $("html").off("click");
     clearInterval(gameInterval);
+    clearInterval(scoreInterval);
+    clearInterval(difficultyInterval);
 
     //Stop all animations
     $("#block").css("animationPlayState", "paused");
@@ -35,8 +45,8 @@ const gameOver = (birdPosition) => {
     $("#game-bird").addClass("game-over");
     gameOverTimeout = setTimeout(function() {
         $("#game-bird").hide();
+        $("#score-container").hide();
         $("#start-screen").show();
-        $("h2").show();
         $("#game-bird").css("top", "200px");
         $("#block").removeClass("animateObstacle");
         $("#hole").removeClass("animateObstacle");
@@ -46,19 +56,22 @@ const gameOver = (birdPosition) => {
 };
 
 const jump = () => {
+
+    jumpingCount++ ;
+    if (jumpingCount == 1) return;
+
     let jumpTimeout;
     if (jumping){
         $("#game-bird").removeClass("jumping")
         clearInterval(jumpTimeout)
-        jumping = 0;
     } 
-    jumping = 1;
+    jumping = true;
     let position = $("#game-bird").position().top;
     $(":root").css({"--bird-jump-start": position+"px", "--bird-jump-end": position-150+"px"});
     $("#game-bird").addClass("jumping")
     jumpTimeout = setTimeout(function() {
         $("#game-bird").removeClass("jumping")
-        jumping = 0;
+        jumping = false;
     }, 250)
 }
 
@@ -70,7 +83,6 @@ const setGameInterval = () => {
     // Game Logic
 
     let _birdposition = $("#game-bird").position();
-    console.log(_birdposition)
     let birdPosition = {
         top: _birdposition.top,
         bottom: _birdposition.top + $("#game-bird").height(),
@@ -92,21 +104,33 @@ const setGameInterval = () => {
     };
 
     //If hit ceiling or floor
-    if (birdPosition.bottom >= 600 || birdPosition.top <= 0) gameOver(birdPosition, gameInterval);
+    if (birdPosition.bottom >= 625 || birdPosition.top <= 25) gameOver(birdPosition, gameInterval);
 
     // While birds not hit the block, return empty
     if (birdPosition.right < blockPosition.left || birdPosition.left > blockPosition.right) return;
 
     // While birds is in the holes
-    if (birdPosition.bottom > holePosition.top && birdPosition.top < holePosition.bottom) return;
+    if (birdPosition.top > holePosition.top && birdPosition.bottom < holePosition.bottom) return;
 
     gameOver(birdPosition);
 }
+
+const setScoreInterval = () => {
+    score ++;
+    $("#final-score").text(`Your Score: ${score}`);
+    $("#current-score").text(`${score}`);
+    $("#current-score").addClass("increase-score");
+    jumpTimeout = setTimeout(function() {
+        $("#current-score").removeClass("increase-score");
+    }, 500)
+}
+
 const loadPage = () => {
-    
+
     $("#hole").on("animationiteration", function() {
         let random = Math.random(); //retunr 0 - 1 
-        let randomTop = random*(600-200) + 25 + "px"; //Height of the screen 650px - height of block 100px
+        let randomTop = random*(600-250) + 25 + "px"; //Height of the screen 650px - height of holes 250px
+
         $(this).css("top", randomTop);
     })
 
