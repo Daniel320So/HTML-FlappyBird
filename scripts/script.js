@@ -109,10 +109,10 @@ const setGameInterval = () => {
 
     // While birds not hit the block, return empty
     if (birdPosition.right < block1Position.left || birdPosition.left > block1Position.right) return;
-    console.log("2", birdPosition, block1Position, block2Position)
+
     //While birds is in the holes
     if (birdPosition.top > block1Position.bottom && birdPosition.bottom < block2Position.top) return;
-    console.log("3")
+
     gameOver(birdPosition);
 }
 
@@ -126,7 +126,49 @@ const setScoreInterval = () => {
     }, 500)
 }
 
+const loadBackground = () => {
+
+    let backgroundWidth = $("#playground").width();
+    let backgroundHeight = $("#playground").width();
+
+    for (let i=0; i<50; i++){
+        let snow =  $(document.createElement('div'))
+        snow.html("❅");
+        snow.addClass("snow")
+        let randomSize = Math.random() * 1.5 + 1;
+        let randomLeft = Math.random() * backgroundWidth;
+        let seconds = i/2.5;
+        snow.css("font-size", randomSize + "em")
+        snow.css("left", randomLeft + "px")
+        snow.css("animation-delay", seconds + "s")
+        // // snow.addClass("animate-snow");
+        $("#background").append(snow);
+    }
+
+    // let backgroundInterval = setInterval(function(){
+
+    //     //If snow fall outside the playground, reset it
+    //     $(".snow").each(function(){
+    //         let snowPosition = $(this).position();
+    //         $(this).css("left", snowPosition.left + "px")
+    //         $(this).css("top", snowPosition.top + "px")
+    //         if (snowPosition.top > 600 || snowPosition.left < 0 || snowPosition.left > backgroundWidth) {
+    //             console.log("reset")
+    //             let randomLeft = Math.random() * backgroundWidth;
+    //             let randomTop = Math.random() * backgroundHeight;
+    //             $(this).css("left", randomLeft + "px")
+    //             $(this).css("top", randomTop + "px")
+    //             $(this).toggle().toggle()
+    //             // $(this).addClass("animate-snow")
+    //         }
+    //     })
+    // }, 1000)
+}
+
+
 const loadPage = () => {
+
+    loadBackground()
 
     $("#block-1").on("animationiteration", function() {
         let holeHeight = 250;

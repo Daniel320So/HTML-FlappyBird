@@ -59,6 +59,10 @@ h1 {
     font-size: 3.5em;
 }
 
+h2 {
+    color: white;
+}
+
 button {
     font-size: 1em;
     background-color: aliceblue;
@@ -188,4 +192,34 @@ button {
     }
 }
 
+/* Background */
+/* Reference on https://codepen.io/codeconvey/pen/xRzQay */
 
+#background {
+    width: 100%;
+}
+
+.snow {
+    color: white;
+    position: absolute;
+    top: -15px;
+    animation: snow-fall 20s infinite linear
+}
+
+
+@keyframes snow-fall {
+    0% {
+        transform:translateX(0px);
+        top:-5%;
+    }
+    25% {
+        transform:translateX(60px);
+    }
+    75% {
+        transform:translateX(-60px);
+    }
+    100% {
+        transform:translateX(0px);
+        top:100%;
+    }
+  }
