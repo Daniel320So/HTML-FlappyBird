@@ -6,15 +6,16 @@ Animations will be used in the following ways
 - When a click event is triggered, the flappy bird will jump
 - The obstacles of the background will be moving through animation
 - Score is animated with a larger size and changing color
+- Background snow will fall down by the use of animation
 
 ## MVP 
 This game includes the basic features of the Flappy Bird
 - Random obstacles appear in the UI
 - Game loses while the bird hits the obstacles
 - Score calculations based on the time passed
-- Increase difficulty (Speed) based on the time passed
+- Increase difficulty (smaller hole size) based on the time passed
 
-## Additional Features
+## Additional Features might be Included in the Future
 - Additional items that adds score
 - Additional items that change the bird size
 - Score Board that store previous record on cookies
