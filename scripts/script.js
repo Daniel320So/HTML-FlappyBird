@@ -18,10 +18,8 @@ const start = () => {
     $("#current-score").text(`${score}`);
     $("#score-container").css("display", "flex");
     $("#game-bird").show();
-    $("#block").addClass("animateObstacle");
-    $("#hole").addClass("animateObstacle");
-    $("#block").css("animationPlayState", "running");
-    $("#hole").css("animationPlayState", "running");
+    $(".block").addClass("animateObstacle");
+    $(".block").css("animationPlayState", "running");
     started = true;
     gameInterval = setInterval(setGameInterval, 10);
     scoreInterval = setInterval(setScoreInterval, 1000);
@@ -37,8 +35,7 @@ const gameOver = (birdPosition) => {
     clearInterval(difficultyInterval);
 
     //Stop all animations
-    $("#block").css("animationPlayState", "paused");
-    $("#hole").css("animationPlayState", "paused");
+    $(".block").css("animationPlayState", "paused");
 
     //Animate Bird
     $(":root").css({ "--bird-game-over": birdPosition.top - 100 + "px" });
@@ -48,8 +45,7 @@ const gameOver = (birdPosition) => {
         $("#score-container").hide();
         $("#start-screen").show();
         $("#game-bird").css("top", "200px");
-        $("#block").removeClass("animateObstacle");
-        $("#hole").removeClass("animateObstacle");
+        $(".block").removeClass("animateObstacle");
         $("#game-bird").removeClass("game-over");
     }, 900);
 
@@ -91,27 +87,32 @@ const setGameInterval = () => {
     };
 
     //check whether a block is hitted.
-    let _blockPosition = $("#block").position();
-    let blockPosition = {
-        left: _blockPosition.left,
-        right: _blockPosition.left + $("#hole").width()
+    let _block1Position = $("#block-1").position();
+    let block1Position = {
+        top: _block1Position.top,
+        bottom: _block1Position.top + $("#block-1").height(),
+        left: _block1Position.left,
+        right: _block1Position.left + $("#block-1").width()
     };
 
-    let _holePosition = $("#hole").position();
-    let holePosition = {
-        top: _holePosition.top,
-        bottom: _holePosition.top + $("#hole").height()
+    let _block2Position = $("#block-2").position();
+    let block2Position = {
+        top: _block2Position.top,
+        bottom: _block2Position.top + $("#block-1").height(),
+        left: _block2Position.left,
+        right: _block2Position.left + $("#block-2").width()
     };
+
 
     //If hit ceiling or floor
     if (birdPosition.bottom >= 625 || birdPosition.top <= 25) gameOver(birdPosition, gameInterval);
 
     // While birds not hit the block, return empty
-    if (birdPosition.right < blockPosition.left || birdPosition.left > blockPosition.right) return;
-
-    // While birds is in the holes
-    if (birdPosition.top > holePosition.top && birdPosition.bottom < holePosition.bottom) return;
-
+    if (birdPosition.right < block1Position.left || birdPosition.left > block1Position.right) return;
+    console.log("2", birdPosition, block1Position, block2Position)
+    //While birds is in the holes
+    if (birdPosition.top > block1Position.bottom && birdPosition.bottom < block2Position.top) return;
+    console.log("3")
     gameOver(birdPosition);
 }
 
@@ -127,11 +128,15 @@ const setScoreInterval = () => {
 
 const loadPage = () => {
 
-    $("#hole").on("animationiteration", function() {
+    $("#block-1").on("animationiteration", function() {
+        let holeHeight = 250;
         let random = Math.random(); //retunr 0 - 1 
-        let randomTop = random*(600-250) + 25 + "px"; //Height of the screen 650px - height of holes 250px
+        let randomHeightForBlock1 = random*(600-holeHeight); // 0 to 350
+        let randomHeightForBlock2 = 600 - randomHeightForBlock1 - holeHeight; // 0 - 350
 
-        $(this).css("top", randomTop);
+        console.log(randomHeightForBlock1, randomHeightForBlock2)
+        $(this).css("height", randomHeightForBlock1 + "px");
+        $("#block-2").css("height", randomHeightForBlock2 + "px");
     })
 
     $("#start-button").on("click", function(){

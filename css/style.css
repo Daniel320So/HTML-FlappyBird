@@ -12,16 +12,14 @@
     margin: 0;
 }
 
-section {
-    display: none;
-}
-
 #game-screen {
-
     position: relative;
     width: 80%;
     height: 650px;
     overflow: hidden;
+    border: 5px solid black;
+    background: linear-gradient(rgb(23, 45, 67), rgb(13, 26, 39));
+    z-index: 1;
 }
 
 .center {
@@ -83,36 +81,31 @@ button {
     width: 100%;
     height: 600px;
     overflow: hidden;
-    background-color: aqua;
 }
 
 #upper-bound {
     width: 100%;
     height: 25px;
-    background-color: burlywood;
+    background-color: white;
 }
 
 #lower-bound {
     width: 100%;
     height: 25px;
-    background-color: burlywood;
+    background-color: white;
 }
 
-#block {
+.block {
     position: absolute;
-    height: 600px;
+    height: 200px;
     width: 10%;
     background-color: greenyellow;
     right: 0;
 }
 
-#hole {
-    position: absolute;
-    height: 250px;
-    width: 10%;
-    background-color: aqua;
-    right: 0;
-    top: 30%;
+
+#block-2 {
+    bottom: 25px;
 }
 
 .animateObstacle {
