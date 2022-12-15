@@ -1,5 +1,6 @@
 let score = 0;
 let jumpingCount = 0;
+let holeHeight = 300;
 let jumping = false;
 let gaming = false;
 let gameInterval;
@@ -47,6 +48,7 @@ const gameOver = (birdPosition) => {
         $("#game-bird").css("top", "200px");
         $(".block").removeClass("animateObstacle");
         $("#game-bird").removeClass("game-over");
+        $("#final-score").show();
     }, 900);
 
 };
@@ -129,7 +131,6 @@ const setScoreInterval = () => {
 const loadBackground = () => {
 
     let backgroundWidth = $("#playground").width();
-    let backgroundHeight = $("#playground").width();
 
     for (let i=0; i<50; i++){
         let snow =  $(document.createElement('div'))
@@ -141,28 +142,8 @@ const loadBackground = () => {
         snow.css("font-size", randomSize + "em")
         snow.css("left", randomLeft + "px")
         snow.css("animation-delay", seconds + "s")
-        // // snow.addClass("animate-snow");
         $("#background").append(snow);
     }
-
-    // let backgroundInterval = setInterval(function(){
-
-    //     //If snow fall outside the playground, reset it
-    //     $(".snow").each(function(){
-    //         let snowPosition = $(this).position();
-    //         $(this).css("left", snowPosition.left + "px")
-    //         $(this).css("top", snowPosition.top + "px")
-    //         if (snowPosition.top > 600 || snowPosition.left < 0 || snowPosition.left > backgroundWidth) {
-    //             console.log("reset")
-    //             let randomLeft = Math.random() * backgroundWidth;
-    //             let randomTop = Math.random() * backgroundHeight;
-    //             $(this).css("left", randomLeft + "px")
-    //             $(this).css("top", randomTop + "px")
-    //             $(this).toggle().toggle()
-    //             // $(this).addClass("animate-snow")
-    //         }
-    //     })
-    // }, 1000)
 }
 
 
@@ -171,7 +152,7 @@ const loadPage = () => {
     loadBackground()
 
     $("#block-1").on("animationiteration", function() {
-        let holeHeight = 250;
+        holeHeight = holeHeight - 10; //Increase difficulty each time
         let random = Math.random(); //retunr 0 - 1 
         let randomHeightForBlock1 = random*(600-holeHeight); // 0 to 350
         let randomHeightForBlock2 = 600 - randomHeightForBlock1 - holeHeight; // 0 - 350
