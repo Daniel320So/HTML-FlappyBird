@@ -21,6 +21,7 @@ const start = () => {
     $("#game-bird").show();
     $(".block").addClass("animateObstacle");
     $(".block").css("animationPlayState", "running");
+    holeHeight = 300;
     started = true;
     gameInterval = setInterval(setGameInterval, 10);
     scoreInterval = setInterval(setScoreInterval, 1000);
