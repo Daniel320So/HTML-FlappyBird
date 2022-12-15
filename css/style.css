@@ -17,7 +17,7 @@
     width: 80%;
     height: 650px;
     overflow: hidden;
-    border: 5px solid black;
+    border: 5px solid #966F33;
     background: linear-gradient(#172D43,#0D1A27);
     z-index: 1;
 }
@@ -75,7 +75,7 @@ button {
     width: 50%;
     height: 50px;
     border-radius: 10px;
-    border-color: #F9F871;
+    border-color: none;
 }
 
 #final-score {
@@ -83,6 +83,7 @@ button {
 }
 
 #christmas-text {
+    text-align: center;
     animation: change-christmas-text-color 4s infinite linear;
 }
 

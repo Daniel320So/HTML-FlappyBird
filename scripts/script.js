@@ -157,7 +157,6 @@ const loadPage = () => {
         let randomHeightForBlock1 = random*(600-holeHeight); // 0 to 350
         let randomHeightForBlock2 = 600 - randomHeightForBlock1 - holeHeight; // 0 - 350
 
-        console.log(randomHeightForBlock1, randomHeightForBlock2)
         $(this).css("height", randomHeightForBlock1 + "px");
         $("#block-2").css("height", randomHeightForBlock2 + "px");
     })
